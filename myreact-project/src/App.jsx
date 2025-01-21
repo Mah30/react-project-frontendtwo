@@ -8,7 +8,7 @@ import Navbar from '../src/components/Navbar/Navbar';
 /* import Sidebar from './components/Sidebar/Sidebar'; */
 import Footer from '../src/components/Footbar/Footer';
 import Login from '../src/pages/Login/Login';
-import Register from '../src/pages/Register/Register';
+import Register from './pages/Register/Signup';
 
 
 
