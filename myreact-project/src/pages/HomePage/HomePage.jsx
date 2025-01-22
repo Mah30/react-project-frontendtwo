@@ -1,8 +1,8 @@
-const NotFoundPage = () => {
+const HomePage = () => {
     return (   
         <div>
             <h1>
-                NotFoundPage
+                HomePage
             </h1>
         </div>
      );
@@ -11,4 +11,4 @@ const NotFoundPage = () => {
 
 
 }
- export default NotFoundPage;
+ export default HomePage;
