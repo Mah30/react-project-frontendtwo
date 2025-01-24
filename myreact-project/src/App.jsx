@@ -1,6 +1,5 @@
 /* import React from 'react'; */
 import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import './index.css';
 /* import { useEffect, useState } from 'react'; */
@@ -41,7 +40,7 @@ function App() {
 
       <main className={"styles.main"}> 
 
-      <BrowserRouter>  
+       
 
         <Routes>
         {/* Rotas públicas */}
@@ -60,7 +59,7 @@ function App() {
 
         </Routes>  
 
-      </BrowserRouter> 
+      
 
       </main>
 

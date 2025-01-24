@@ -7,10 +7,18 @@ import { Card } from "flowbite-react";
 const API_URL = "http://localhost:3000";
 
 const SignupPage = () => {
-    const [email, setEmail] = useState(""); // Estado para o email
-    const [password, setPassword] = useState(""); // Estado para a senha
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+ 
+
+
     const [name, setName] = useState(""); // Estado para o nome
-    const [errorMessage, setErrorMessage] = useState(undefined); // Estado para mensagens de erro
+    
 
     const navigate = useNavigate(); // Hook do React Router para redirecionamento
 
@@ -30,7 +38,11 @@ const SignupPage = () => {
   const handleSignupSubmit = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão de recarregar a página
 
-    const requestBody = { email, password, name }; // Cria o corpo da requisição com email, senha e nome
+    const requestBody = { 
+      firstName,
+      lastName,
+      email,
+      password }; // Cria o corpo da requisição com email, senha e nome
 
     try {
       // Faz a chamada para o backend usando fetch
@@ -52,7 +64,7 @@ const SignupPage = () => {
       navigate("/login");
     } catch (error) {
       // Exibe a mensagem de erro recebida do backend
-      setErrorMessage(error.message);
+      setError(error.message);
     }
   };
 
@@ -61,6 +73,18 @@ const SignupPage = () => {
       <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg">
         <form onSubmit={handleSignupSubmit} className="p-4">
           <h3 className="text-center font-bold mb-4">Sign Up</h3>
+
+          {/* Campo de entrada para nome */}
+          <label className="label" htmlFor="name">Name</label>
+          <input
+            className="input"
+            type="text"
+            name="name"
+            id="name"
+            value={name}
+            onChange={handleName}
+            autoComplete="off"
+          />
 
           {/* Campo de entrada para email */}
           <label className="label" htmlFor="email">Email</label>
@@ -86,24 +110,14 @@ const SignupPage = () => {
             autoComplete="off"
           />
 
-          {/* Campo de entrada para nome */}
-          <label className="label" htmlFor="name">Name</label>
-          <input
-            className="input"
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            onChange={handleName}
-            autoComplete="off"
-          />
+          
 
           {/* Botão para criar conta */}
           <button className="mt-4" type="submit">Create Account</button>
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}
-        {errorMessage && <p className="text-red-500 text-center mb-4">{errorMessage}</p>}
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         {/* Link para a página de login */}
         <p className="ml-4">Already have an account? <span><Link to="/login">Log in</Link></span></p>
