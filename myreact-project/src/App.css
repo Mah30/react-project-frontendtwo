@@ -1,43 +1,437 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General Theme Colors */
+:root {
+  --primary-color: #0dad90; /* Deep purple for a luxurious touch */
+  --secondary-color: #3e83b4; /* Fresh green for highlights */
+  --background-color: #f8f9fa; /* Soft off-white for backgrounds */
+  --text-color: #333333; /* Dark gray for readability */
+  --accent-color: #68cad7; /* Bright purple for active states */
+  --hover-color: #2ecc71; /* Vibrant green for hover effects */
+}
+
+/* Body and Global Settings */
+body {
+  font-family: 'Inter', sans-serif; /* Flowbite's default font */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+/* Navbar Styles */
+/* .navbar {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: var(--secondary-color);
+} */
+
+/* Buttons */
+button {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--hover-color);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+/* Cards */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.card-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.card-body {
+  color: var(--text-color);
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+table th,
+table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: var(--background-color);
+}
+
+/* Footer Styles */
+footer {
+  background-color: var(--primary-color);
+  color: white;
   text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+footer a {
+  color: var(--secondary-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer a:hover {
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Forms */
+.input,
+.textarea,
+.select {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.5rem; 
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.3);
+}
+
+.label {
+  margin: 0px;
+  padding-left: 4px;
+  display: block;
+  color:#333333;
+}
+
+/* Pricing Highlights */
+.pricing-tag {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.pricing-tag.important {
+  background-color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
   }
+
+  .card {
+    padding: 1rem;
+  }
+
+  table th,
+  table td {
+    font-size: 0.9rem;
+  }
+}
+/* General Theme Colors */
+:root {
+--primary-color: #6a0dad; /* Deep purple for a luxurious touch */
+--secondary-color: #3eb489; /* Fresh green for highlights */
+--background-color: #f8f9fa; /* Soft off-white for backgrounds */
+--text-color: #333333; /* Dark gray for readability */
+--accent-color: #8e44ad; /* Bright purple for active states */
+--hover-color: #2ecc71; /* Vibrant green for hover effects */
+}
+
+/* Body and Global Settings */
+body {
+font-family: 'Inter', sans-serif; /* Flowbite's default font */
+background-color: var(--background-color);
+color: var(--text-color);
+line-height: 1.6;
+margin: 0;
+padding: 0;
+}
+
+a {
+text-decoration: none;
+color: var(--accent-color);
+}
+
+a:hover {
+color: var(--hover-color);
+}
+
+/* Navbar Styles */
+.navbar {
+background-color: var(--primary-color);
+color: white;
+}
+
+.navbar a {
+color: white;
+font-weight: 500;
+}
+
+.navbar a:hover {
+color: var(--secondary-color);
+}
+
+/* Buttons */
+button {
+background-color: var(--secondary-color);
+color: white;
+padding: 0.5rem 1rem;
+border: none;
+border-radius: 8px;
+font-weight: bold;
+transition: background-color 0.3s ease;
+}
+
+button:hover {
+background-color: var(--hover-color);
+}
+
+button:disabled {
+background-color: #cccccc;
+color: #666666;
+cursor: not-allowed;
+}
+
+/* Cards */
+.card {
+background-color: white;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+padding: 1.5rem;
+margin: 1rem 0;
+}
+
+.card-header {
+font-size: 1.25rem;
+font-weight: bold;
+color: var(--primary-color);
+}
+
+.card-body {
+color: var(--text-color);
+}
+
+/* Table Styles */
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1rem 0;
+overflow-x: auto;
+display: block;
+}
+
+table th,
+table td {
+padding: 0.75rem 1rem;
+border: 1px solid #e0e0e0;
+text-align: left;
+white-space: nowrap;
+}
+
+table th {
+background-color: var(--primary-color);
+color: white;
+font-weight: bold;
+}
+
+table tr:nth-child(even) {
+background-color: var(--background-color);
+}
+
+/* Footer Styles */
+footer {
+background-color: var(--primary-color);
+color: white;
+text-align: center;
+padding: 1rem 0;
+margin-top: 2rem;
+}
+
+footer a {
+color: var(--secondary-color);
+}
+
+footer a:hover {
+color: white;
+}
+
+/* Forms */
+/* input,
+textarea,
+select {
+border: 1px solid #e0e0e0;
+border-radius: 6px;
+padding: 0.5rem;
+width: 100%;
+margin: 0.5rem 0;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+border-color: var(--accent-color);
+outline: none;
+box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.3);
+} */
+
+
+/* Pricing Highlights */
+.pricing-tag {
+background-color: var(--secondary-color);
+color: white;
+font-size: 0.9rem;
+padding: 0.4rem 0.6rem;
+border-radius: 8px;
+display: inline-block;
+}
+
+.pricing-tag.important {
+background-color: var(--accent-color);
+font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.navbar {
+  flex-direction: column;
+  align-items: center;
 }
 
 .card {
-  padding: 2em;
+  padding: 1rem;
 }
 
-.read-the-docs {
-  color: #888;
+table th,
+table td {
+  font-size: 0.9rem;
 }
- */
+}
+
+
+.custom-card {
+transition: transform 0.3s ease;
+}
+
+.custom-card:hover {
+transform: translateY(-5px);
+}
+
+.custom-card img {
+max-height: 200px;
+object-fit: contain;
+}
+
+.image-container {
+height: 200px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.text-secondary {
+color: var(--secondary-color);
+}
+
+.border-radius-top {
+border-top-left-radius: 12px;
+border-top-right-radius: 12px;
+}
+
+h1 {
+color: var(--primary-color);
+}
+
+.text-primary-color {
+color: var(--primary-color);
+}
+
+.text-accent-color {
+color: var(--accent-color);
+}
+
+/* Slider Styles */
+input[type="range"] {
+/* -webkit-appearance: none; */
+width: 100%;
+height: 8px;
+background: var(--background-color);
+outline: none;
+opacity: 0.7;
+transition: opacity 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+background: var(--secondary-color);
+cursor: pointer;
+border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+width: 20px;
+height: 20px;
+background: var(--secondary-color);
+cursor: pointer;
+border-radius: 50%;
+}
+
+ 

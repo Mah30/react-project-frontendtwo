@@ -7,8 +7,8 @@ import './index.css';
 import Navbar from '../src/components/Navbar/Navbar';
 /* import Sidebar from './components/Sidebar/Sidebar'; */
 import Footer from '../src/components/Footbar/Footer';
-import Login from '../src/pages/Login/Login';
-import Signup from './pages/Register/Signup';
+import LoginPage from './pages/Login/LoginPage';
+import SignupPage from './pages/Register/SignupPage';
 import HomePage from './pages/HomePage/HomePage';
 import Dashboard from './pages/Dashboard/Dashboard';
 /* import ClassesDetails from './pages/ClassesDetails';
@@ -24,6 +24,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css'; 
+
+
 
 
 
@@ -44,8 +46,8 @@ function App() {
         <Routes>
         {/* Rotas públicas */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element = {<Login/>} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element = {<LoginPage/>} />
+        <Route path="/signup" element={<SignupPage />} />
 
         {/* Rotas protegidas */}
         <Route path="/dashboard" element={<Dashboard />} />
