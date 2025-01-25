@@ -1,12 +1,22 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const SessionContext = createContext(); // Criação do contexto de autenticação
 
 const SessionContextProvider = ({ children }) => {
-  const [token, setToken] = useState(null); // Estado para armazenar o token de autenticação, inicializado como null
+  const [token, setToken] = useState(null); 
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+
+  useEffect(() => {
+    if (token){
+      setIsAuthenticated(true)
+    }
+    
+  }, [token])
+
 
   return (
-    <SessionContext.Provider value={{ token, setToken }}>
+    <SessionContext.Provider value={{ token, setToken, isAuthenticated }}>
       {children}
     </SessionContext.Provider>
   );

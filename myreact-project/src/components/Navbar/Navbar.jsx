@@ -6,23 +6,16 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useContext } from 'react';
+import { SessionContext } from '../../SessionContext/SessionContext';
 
-
-/* const Navbar = () => {
-  return ( 
-    <div>
-      <h1>
-        Navbar
-      </h1>
-    </div>
-   );
-}
- 
-export default Navbar; */
 
 
 
  function Navbar() {
+
+  const {isAuthenticated} = useContext(SessionContext)
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -39,8 +32,12 @@ export default Navbar; */
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             FitnessStudio
           </Typography>
+
+          {isAuthenticated } {/* COMO EU AAUTENTICO AQUI??? */}
+
+          <Button color="inherit">Profile</Button>
           <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          <Button color="inherit">Signup</Button>
         </Toolbar>
       </AppBar>
     </Box>

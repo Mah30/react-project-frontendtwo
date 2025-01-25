@@ -61,7 +61,7 @@ const LoginPage = () => {
 
      
       setSuccess("Login successful! Redirecting...");
-      setTimeout(() => navigate("/dashboard"), 2000); // Talvez eu altere  "/dashboard" para a página de destino após login
+      setTimeout(() => navigate("/profile"), 2000); // Talvez eu altere  "/dashboard" para a página de destino após login
 
     } catch (error) {
       console.error("Error during login:", error.message);
