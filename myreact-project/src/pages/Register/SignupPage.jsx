@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 
 
-const API_URL = "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const SignupPage = () => {
   const [firstName, setFirstName] = useState('');
