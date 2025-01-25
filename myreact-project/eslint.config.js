@@ -35,4 +35,11 @@ export default [
       ],
     },
   },
+
+  {
+    // Configuração específica para arquivos CSS 
+    rules: {
+      'unknownAtRules': 'off', // Ignora erros para regras como @tailwind
+    },
+  },
 ]

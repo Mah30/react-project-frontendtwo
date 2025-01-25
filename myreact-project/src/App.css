@@ -185,11 +185,11 @@ footer a:hover {
 }
 /* General Theme Colors */
 :root {
---primary-color: #6a0dad; /* Deep purple for a luxurious touch */
---secondary-color: #3eb489; /* Fresh green for highlights */
+--primary-color: #0d68ad; /* Deep purple for a luxurious touch */
+--secondary-color: #103729; /* Fresh green for highlights */
 --background-color: #f8f9fa; /* Soft off-white for backgrounds */
 --text-color: #333333; /* Dark gray for readability */
---accent-color: #8e44ad; /* Bright purple for active states */
+--accent-color: #7192ec; /* Bright purple for active states */
 --hover-color: #2ecc71; /* Vibrant green for hover effects */
 }
 
