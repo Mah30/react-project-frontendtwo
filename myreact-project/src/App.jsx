@@ -23,6 +23,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css'; 
+import PrivateRoute from './components/PrivateRoute';
 
 
 
@@ -49,10 +50,11 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
 
         {/* Rotas protegidas */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/classes/:classId" element={<ClassesDetails />} /> 
-        <Route path="/bookings/:bookingId" element={<BookingDetails />} />
-        <Route path="/profile" element={<ProfilePage />} />
+
+        <Route path="/dashboard" element={<Dashboard />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/classes/:classId" element={<ClassesDetails />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/bookings/:bookingId" element={<BookingDetails />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />{/* PRIVATE PROFILE AQUI */}
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<NotFoundPage />} />

@@ -14,12 +14,13 @@ import { SessionContext } from '../../SessionContext/SessionContext';
 
  function Navbar() {
 
-  const {isAuthenticated} = useContext(SessionContext)
+  const {isAuthenticated, logout  } = useContext(SessionContext)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          {/* Ícone do menu */}
           <IconButton
             size="large"
             edge="start"
@@ -29,15 +30,23 @@ import { SessionContext } from '../../SessionContext/SessionContext';
           >
             <MenuIcon />
           </IconButton>
+          {/* Título da Navbar */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             FitnessStudio
           </Typography>
 
-          {isAuthenticated } {/* COMO EU AAUTENTICO AQUI??? */}
-
+          {isAuthenticated ? (
+          <>
           <Button color="inherit">Profile</Button>
+          <Button color="inherit" onClick={logout}>Logout</Button> 
+          </>
+          ) : (
+          <>
           <Button color="inherit">Login</Button>
           <Button color="inherit">Signup</Button>
+          </>
+          )}
+
         </Toolbar>
       </AppBar>
     </Box>
