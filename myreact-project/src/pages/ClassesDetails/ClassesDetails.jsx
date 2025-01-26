@@ -2,9 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const ClassesDetails = () => {
     
-    const { classId } = useParams(); // Obtém o ID da classe a partir da URL
+    const { classId } = useParams(); 
     const [classData, setClassData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +15,9 @@ const ClassesDetails = () => {
     useEffect(() => {
       const fetchClassDetails = async () => {
         try {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/classes/${classId}`);
+          const response = await fetch(`${API_URL}/api/classes/${classId}`);
+       
+
           if (response.ok) {
             const data = await response.json();
             setClassData(data); // Atualiza o estado com os dados da classe
@@ -41,14 +46,16 @@ const ClassesDetails = () => {
         <p><strong>Capacity:</strong> {classData.capacity}</p>
         <p><strong>Duration:</strong> {classData.duration} minutes</p>
         <p><strong>Schedule:</strong></p>
+        
         <ul>
           {classData.schedule.map((date, index) => (
             <li key={index}>{new Date(date).toLocaleString()}</li>
           ))}
         </ul>
+        
         <p><strong>Bookings:</strong> {classData.bookings.length}</p>
   
-        {/* Botão para voltar */}
+        
         <Link to="/classes">
           <button>Back to Classes</button>
         </Link>

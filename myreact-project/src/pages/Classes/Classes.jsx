@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
-const Classes = ({ isHomepage, isUserSpace }) => {
-  const [classes, setClasses] = useState([]); // Estado para armazenar as classes
-  const [loading, setLoading] = useState(true); // Indica se os dados estão carregando
-  const [error, setError] = useState(null); // Armazena erros, caso ocorram
+const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
+  const [classes, setClasses] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const [selectedClass, setSelectedClass] = useState()
+  
 
   // Função para buscar as classes do backend
   const fetchClasses = async () => {
@@ -28,7 +29,7 @@ const Classes = ({ isHomepage, isUserSpace }) => {
     }
   };
 
-  // carrega as classes aqui
+  // useEffect p carregar os cursos
     useEffect(() => {
     fetchClasses();
   }, []); 
@@ -36,9 +37,9 @@ const Classes = ({ isHomepage, isUserSpace }) => {
     /* setClasses(mockClasses) */; // Insere os títulos fornecidos no estado
     /* setLoading(false); */ // Finaliza o carregamento
    
-
     if (loading) return <p>Loading classes...</p>;
     if (error) return <p>Error loading classes: {error}</p>;
+
 
   // Filtra o número de classes a exibir
   const classesToDisplay = isHomepage
@@ -47,10 +48,12 @@ const Classes = ({ isHomepage, isUserSpace }) => {
     ? classes.slice(0, 2)
     : classes;
 
+
+
   return (
     <div>
       {selectedClass ? (
-        <ClassDetails
+        <ClassDetails  /* Quando for definida, apagar lá em cima esta como children */
           classData={selectedClass}
           onBack={() => setSelectedClass(null)}
         />
@@ -60,7 +63,8 @@ const Classes = ({ isHomepage, isUserSpace }) => {
           <ul>
             {classesToDisplay.map((classData) => (
               <li key={classData._id}>
-                <Link to={`/class/${classData._id}`}>{classData.name}</Link>
+
+                <Link to={`/classes/${classData._id}`}>{classData.name}</Link>
               </li>
             ))}
           </ul>
