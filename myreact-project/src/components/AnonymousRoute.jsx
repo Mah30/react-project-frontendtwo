@@ -6,7 +6,11 @@ import { Navigate } from "react-router-dom";
 
 
 const AnonymousRoute = ({ children }) => {
-    const { isAuthenticated } = useContext(SessionContext)
+    const { isAuthenticated, isLoading } = useContext(SessionContext)
+
+    if (isLoading) {
+        return <h2>Loading...</h2>
+    }
 
     if (isAuthenticated) {
         return (<Navigate to = '/profile' />)

@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useContext } from 'react';
 import { SessionContext } from '../../SessionContext/SessionContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +16,8 @@ import { SessionContext } from '../../SessionContext/SessionContext';
  function Navbar() {
 
   const {isAuthenticated, logout  } = useContext(SessionContext)
+
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -37,6 +40,7 @@ import { SessionContext } from '../../SessionContext/SessionContext';
 
           {isAuthenticated ? (
           <>
+          <Button color="inherit" onClick={() => navigate("/classes")}>All Classes</Button>
           <Button color="inherit">Profile</Button>
           <Button color="inherit" onClick={logout}>Logout</Button> 
           </>

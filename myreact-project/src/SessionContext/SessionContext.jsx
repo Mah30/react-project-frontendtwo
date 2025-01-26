@@ -7,6 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState(null); 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
  
   const verifyToken = async (tokenToVerify) => {
     try {
@@ -17,20 +18,23 @@ const SessionContextProvider = ({ children }) => {
       });
       if (response.ok) {
         setToken(tokenToVerify);
+        setIsAuthenticated(true);
       } else {
         localStorage.removeItem("authToken");
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
       localStorage.removeItem("authToken");
+    } finally {
+      setIsLoading(false);
     }
   }
 
 
   useEffect(() => {
     if (token){
-      setIsAuthenticated(true)
-      localStorage.setItem('authToken', token)
+      setIsAuthenticated(true);
+      localStorage.setItem('authToken', token);
     }
   }, [token])
 
@@ -38,12 +42,14 @@ const SessionContextProvider = ({ children }) => {
     const storageToken = localStorage.getItem('authToken');
     if (storageToken) {
        verifyToken(storageToken); //Esse if-codigo fez desaparecer do navbar meu login e signup e apareceu meu profile e logout, diretamente na homepage. O que há de errado aqui? - Ver video no minuto 42:00
-    } 
+    } else {
+      setIsLoading(false);
+    }
   }, [])
  
 
   return (
-    <SessionContext.Provider value={{ token, setToken, isAuthenticated }}>
+    <SessionContext.Provider value={{ token, setToken, isAuthenticated, isLoading }}>
       {children}
     </SessionContext.Provider>
   );

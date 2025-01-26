@@ -25,6 +25,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css'; 
 import PrivateRoute from './components/PrivateRoute';
 import AnonymousRoute from './components/AnonymousRoute';
+import Classes from './pages/Classes/Classes';
 
 
 
@@ -54,10 +55,13 @@ function App() {
 
         {/* Rotas protegidas */}
 
+
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />{/* PRIVATE PROFILE AQUI */}
+        <Route path="/classes" element={<PrivateRoute><Classes/></PrivateRoute>} />
+        
         <Route path="/dashboard" element={<Dashboard />} /> {/* PRIVATE PROFILE AQUI */}
         <Route path="/classes/:classId" element={<ClassesDetails />} /> {/* PRIVATE PROFILE AQUI */}
         <Route path="/bookings/:bookingId" element={<BookingDetails />} /> {/* PRIVATE PROFILE AQUI */}
-        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />{/* PRIVATE PROFILE AQUI */}
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<NotFoundPage />} />
