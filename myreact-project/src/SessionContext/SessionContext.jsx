@@ -35,6 +35,8 @@ const SessionContextProvider = ({ children }) => {
     if (token){
       setIsAuthenticated(true);
       localStorage.setItem('authToken', token);
+    } else {
+      setIsAuthenticated(false);
     }
   }, [token])
 
