@@ -55,9 +55,9 @@ const LoginPage = () => {
       const responseData = await loginResponse.json();
 
       // Armazena o token no localStorage
-      localStorage.setItem("authToken", responseData.token);
-      console.log(responseData)
-      setToken("Token received:", responseData.token);
+      /* localStorage.setItem("authToken", responseData.token); */
+      console.log("Token received:", responseData)
+      setToken(responseData.token);
 
      
       setSuccess("Login successful! Redirecting...");

@@ -2,9 +2,29 @@ import { createContext, useEffect, useState } from "react";
 
 export const SessionContext = createContext(); // Criação do contexto de autenticação
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState(null); 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+ 
+  const verifyToken = async (tokenToVerify) => {
+    try {
+      const response = await fetch(`${API_URL}/auth/verify`, {
+        headers: {
+          Authorization: `Bearer ${tokenToVerify}`,
+        },
+      });
+      if (response.ok) {
+        setToken(tokenToVerify);
+      } else {
+        localStorage.removeItem("authToken");
+      }
+    } catch (error) {
+      console.error(error)
+      localStorage.removeItem("authToken");
+    }
+  }
 
 
   useEffect(() => {
@@ -15,12 +35,12 @@ const SessionContextProvider = ({ children }) => {
   }, [token])
 
   useEffect(() => {
-    const storageToken = localStorage.getItem('authToken') 
+    const storageToken = localStorage.getItem('authToken');
     if (storageToken) {
-      setToken(storageToken) //Esse if-codigo fez desaparecer do navbar meu login e signup e apareceu meu profile e logout, diretamente na homepage. O que há de errado aqui? - Ver video no minuto 42:00
+       verifyToken(storageToken); //Esse if-codigo fez desaparecer do navbar meu login e signup e apareceu meu profile e logout, diretamente na homepage. O que há de errado aqui? - Ver video no minuto 42:00
     } 
   }, [])
-
+ 
 
   return (
     <SessionContext.Provider value={{ token, setToken, isAuthenticated }}>

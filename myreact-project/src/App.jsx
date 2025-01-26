@@ -24,6 +24,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css'; 
 import PrivateRoute from './components/PrivateRoute';
+import AnonymousRoute from './components/AnonymousRoute';
 
 
 
@@ -46,8 +47,10 @@ function App() {
         <Routes>
         {/* Rotas públicas */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element = {<LoginPage/>} />
-        <Route path="/signup" element={<SignupPage />} />
+
+
+        <Route path="/login" element = {<AnonymousRoute><LoginPage/></AnonymousRoute>} />
+        <Route path="/signup" element={<AnonymousRoute><SignupPage /></AnonymousRoute>} />
 
         {/* Rotas protegidas */}
 
