@@ -1,13 +1,9 @@
-/* import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import { Card } from "flowbite-react";  */
-
-
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import {SessionContext} from '../../SessionContext/SessionContext';
+
+
 
 const API_URL = import.meta.env.VITE_API_URL;
 

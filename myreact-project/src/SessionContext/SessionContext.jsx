@@ -43,7 +43,7 @@ const SessionContextProvider = ({ children }) => {
   useEffect(() => {
     const storageToken = localStorage.getItem('authToken');
     if (storageToken) {
-       verifyToken(storageToken); //Esse if-codigo fez desaparecer do navbar meu login e signup e apareceu meu profile e logout, diretamente na homepage. O que há de errado aqui? - Ver video no minuto 42:00
+       verifyToken(storageToken); //Esse if-codigo fez desaparecer do navbar meu login e signup e apareceu meu profile e logout, diretamente na homepage. O que há de errado aqui? - Ver video no minuto 42:00 -já consertei
     } else {
       setIsLoading(false);
     }
