@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import DeleteBooking from '../Bookings/DeleteBooking';
 
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
@@ -38,7 +39,10 @@ const MyClasses = () => {
       const bookings = await response.json();
 
       // Extraindo apenas as informações das classes a partir das reservas
-      const bookedClasses = bookings.map((booking) => booking.class);
+      const bookedClasses = bookings.map((booking) => ({
+        ...booking.class,
+        bookingId: booking._id,
+      }));
       setClasses(bookedClasses); // Atualiza o estado com as classes
     } catch (err) {
       console.error("Error fetching user classes:", err);
@@ -67,9 +71,9 @@ const MyClasses = () => {
       {/* Lista as classes do estudante */}
       <ul>
         {classes.length === 0 && !loading && <p>No classes found.</p>}
-        {classes.map((classItem, index) => (
+        {classes.map((classItem) => (
             
-          <li key={`${classItem._id}${index}`}>
+          <li key={classItem.bookingId}>
             <h3>{classItem.name}</h3>
             <p>
               <strong>Schedule:</strong>{" "}
@@ -80,6 +84,9 @@ const MyClasses = () => {
             <p>
               <strong>Duration:</strong> {classItem.duration} minutes
             </p>
+            <div>
+                <DeleteBooking bookingId={classItem.bookingId} onDelete={fetchUserClasses} />
+            </div>
           </li>
         ))}
       </ul>
