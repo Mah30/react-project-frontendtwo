@@ -20,7 +20,7 @@ const UpdateForm = ({ classId, initialData, onUpdateSuccess }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData), // Dados de atualização enviados ao backend
+        body: JSON.stringify(formData), // Dados enviados ao backend
       });
 
       if (response.ok) {

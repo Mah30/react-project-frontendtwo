@@ -67,8 +67,9 @@ const MyClasses = () => {
       {/* Lista as classes do estudante */}
       <ul>
         {classes.length === 0 && !loading && <p>No classes found.</p>}
-        {classes.map((classItem) => (
-          <li key={classItem._id}>
+        {classes.map((classItem, index) => (
+            
+          <li key={`${classItem._id}${index}`}>
             <h3>{classItem.name}</h3>
             <p>
               <strong>Schedule:</strong>{" "}

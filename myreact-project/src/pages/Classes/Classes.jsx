@@ -25,7 +25,7 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
       console.error("Something went wrong:", error);
       setError(error.message);
     } finally {
-      setLoading(false); // Finaliza o estado de carregamento
+      setLoading(false); 
     }
   };
 

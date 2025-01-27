@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Booking from "../Bookings/Booking";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -11,6 +12,9 @@ const ClassesDetails = () => {
     const [classData, setClassData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    
+
+
   
     useEffect(() => {
       const fetchClassDetails = async () => {
@@ -20,7 +24,7 @@ const ClassesDetails = () => {
 
           if (response.ok) {
             const data = await response.json();
-            setClassData(data); // Atualiza o estado com os dados da classe
+            setClassData(data); 
           } else {
             console.error(`HTTP Error: ${response.status}`);
             setError(`HTTP Error: ${response.status}`);
@@ -59,6 +63,10 @@ const ClassesDetails = () => {
         <Link to="/classes">
           <button>Back to Classes</button>
         </Link>
+
+         {/* Componente de reserva reutilizável */}
+      <Booking classId={classId} onBookingSuccess={() => console.log("Booking successful")} /> 
+
       </div>
     );
   };

@@ -101,7 +101,7 @@ const HomePage = () => {
 
 
 
-            <h1 className= {styles.title}>The best online courses platform for you! </h1>
+            <h1 className= {styles.title}>The best FitnessStudio platform for you! </h1>
 
 
            {/*  <CoursePage isHomepage={true} /> */}

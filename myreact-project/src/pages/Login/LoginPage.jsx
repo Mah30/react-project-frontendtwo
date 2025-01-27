@@ -109,7 +109,7 @@ const LoginPage = () => {
 
         {/* Link para a página de cadastro */}
         <p className="ml-4">
-          Don't have an account? 
+          Don&lsquo;t have an account? 
           <span>
             <Link to="/signup">
               Sign up
