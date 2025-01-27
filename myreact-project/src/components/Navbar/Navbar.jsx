@@ -43,7 +43,7 @@ import { Link } from 'react-router-dom';
           <>
           <Button color="inherit" onClick={() => navigate("myclasses")}>My Classes</Button>
           <Button color="inherit" onClick={() => navigate("/classes")}>All Classes</Button>
-          <Button color="inherit">Profile</Button>
+          <Button color="inherit" onClick={() => navigate("profile")}>Profile</Button>
           <Button color="inherit" onClick={logout}>Logout</Button> 
           </>
           ) : (

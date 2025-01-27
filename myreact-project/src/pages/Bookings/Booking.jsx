@@ -16,7 +16,7 @@ const Booking = ({ classId, onBookingSuccess, }) => {
     setError(null);
     setSuccessMessage(null);
 
-    const studentIdFromToken = JSON.parse(atob(localStorage.getItem("authToken").split(".")[1])).studentId; //falta usar a funcao
+    const studentIdFromToken = JSON.parse(atob(localStorage.getItem("authToken").split(".")[1])).studentId;
 
 
     try {
