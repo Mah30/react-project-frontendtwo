@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useContext } from 'react';
 import { SessionContext } from '../../SessionContext/SessionContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -40,14 +41,27 @@ import { useNavigate } from 'react-router-dom';
 
           {isAuthenticated ? (
           <>
+          <Button color="inherit" onClick={() => navigate("myclasses")}>My Classes</Button>
           <Button color="inherit" onClick={() => navigate("/classes")}>All Classes</Button>
           <Button color="inherit">Profile</Button>
           <Button color="inherit" onClick={logout}>Logout</Button> 
           </>
           ) : (
           <>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Signup</Button>
+          <Button 
+          color="inherit" 
+          component={Link} 
+          to="/login"
+          >
+            Login
+          </Button>
+          <Button 
+          color="inherit"
+          component={Link} 
+          to="/signup"
+          >
+            Signup
+          </Button>
           </>
           )}
 
