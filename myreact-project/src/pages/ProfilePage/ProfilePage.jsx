@@ -9,7 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 
 const ProfilePage= () => {
-  const { token } = useContext(SessionContext)
+  const { token, tokenPayload } = useContext(SessionContext)
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -98,7 +98,7 @@ const ProfilePage= () => {
       <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 ..." >
 
         <form onSubmit={handleUpdateProfile} className="p-4">
-          <h3 className="text-center font-bold mb-4">My Profile</h3>
+          <h3 className="text-center font-bold mb-4">My Profile{ tokenPayload.isAdmin ? " (Admin)" : "" }</h3>
 
           {/* Campo de entrada para nome */}
           <label className="label" htmlFor="firstname">Name</label>

@@ -5,7 +5,8 @@ export const SessionContext = createContext(); // Criação do contexto de auten
 const API_URL = import.meta.env.VITE_API_URL;
 
 const SessionContextProvider = ({ children }) => {
-  const [token, setToken] = useState(null); 
+  const [token, setToken] = useState(null);
+  const [tokenPayload, setTokenPayload] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
  
@@ -17,8 +18,7 @@ const SessionContextProvider = ({ children }) => {
         },
       });
       if (response.ok) {
-        setToken(tokenToVerify);
-        setIsAuthenticated(true);
+        replaceToken(tokenToVerify);
       } else {
         localStorage.removeItem("authToken");
       }
@@ -28,6 +28,12 @@ const SessionContextProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  const replaceToken = (newToken) => {
+    setToken(newToken);
+    setTokenPayload(JSON.parse(atob(newToken.split(".")[1])));
+    setIsAuthenticated(true);
   }
 
 
@@ -57,7 +63,7 @@ const SessionContextProvider = ({ children }) => {
  
 
   return (
-    <SessionContext.Provider value={{ token, setToken, isAuthenticated, isLoading, logout }}>
+    <SessionContext.Provider value={{ token, setToken: replaceToken, tokenPayload, isAuthenticated, isLoading, logout }}>
       {children}
     </SessionContext.Provider>
   );
