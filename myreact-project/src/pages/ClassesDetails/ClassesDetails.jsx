@@ -1,7 +1,8 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import Booking from "../Bookings/Booking";
 import { SessionContext } from "../../SessionContext/SessionContext";
+import DeleteClass from "./DeleteClass";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -16,7 +17,7 @@ const ClassesDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     
-
+    const navigate = useNavigate();
 
   
     useEffect(() => {
@@ -76,6 +77,7 @@ const ClassesDetails = () => {
          {
           tokenPayload.isAdmin ? <Link to={`/classes/${classId}/update`}>
              <button>Edit Class</button>
+             <DeleteClass classId={classId} onDelete={() => setTimeout(() => navigate("/classes"), 1000)} />
           </Link> :
          /* Componente de reserva reutilizável */
       <Booking classId={classId} onBookingSuccess={() => console.log("Booking successful")} /> 
