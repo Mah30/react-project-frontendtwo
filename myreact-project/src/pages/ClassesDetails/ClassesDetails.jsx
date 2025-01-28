@@ -9,7 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const ClassesDetails = () => {
 
-    const { token } = useContext(SessionContext)
+    const { token, tokenPayload } = useContext(SessionContext)
     
     const { classId } = useParams(); 
     const [classData, setClassData] = useState(null);
@@ -73,8 +73,14 @@ const ClassesDetails = () => {
           <button>Back to Classes</button>
         </Link>
 
-         {/* Componente de reserva reutilizável */}
+         {
+          tokenPayload.isAdmin ? <Link to={`/classes/${classId}/update`}>
+             <button>Edit Class</button>
+          </Link> :
+         /* Componente de reserva reutilizável */
       <Booking classId={classId} onBookingSuccess={() => console.log("Booking successful")} /> 
+
+         }
 
       </div>
     );

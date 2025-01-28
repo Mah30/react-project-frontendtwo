@@ -27,6 +27,8 @@ import PrivateRoute from './components/PrivateRoute';
 import AnonymousRoute from './components/AnonymousRoute';
 import Classes from './pages/Classes/Classes';
 import MyClasses from './pages/MyClasses/MyClasses';
+import UpdateClass from './pages/ClassesDetails/UpdateClass';
+import AdminRoute from './components/AdminRoute';
 
 
 
@@ -62,6 +64,7 @@ function App() {
         <Route path="/myclasses" element={<PrivateRoute><MyClasses/></PrivateRoute>} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* PRIVATE PROFILE AQUI */}
         <Route path="/classes/:classId" element={<ClassesDetails />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/classes/:classId/update" element={<AdminRoute><UpdateClass /></AdminRoute>} />
         <Route path="/bookings/:bookingId" element={<BookingDetails />} /> {/* PRIVATE PROFILE AQUI */}
 
         {/* Rota para páginas não encontradas */}
