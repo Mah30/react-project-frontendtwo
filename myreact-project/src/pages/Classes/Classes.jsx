@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CreateClass from "./CreateClass";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -70,6 +71,8 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
           </ul>
         </section>
       )}
+
+      <CreateClass onCreate={fetchClasses} />
     </div>
   );
 };

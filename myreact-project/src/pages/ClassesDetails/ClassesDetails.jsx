@@ -1,12 +1,15 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Booking from "../Bookings/Booking";
+import { SessionContext } from "../../SessionContext/SessionContext";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 
 const ClassesDetails = () => {
+
+    const { token } = useContext(SessionContext)
     
     const { classId } = useParams(); 
     const [classData, setClassData] = useState(null);
@@ -19,7 +22,13 @@ const ClassesDetails = () => {
     useEffect(() => {
       const fetchClassDetails = async () => {
         try {
-          const response = await fetch(`${API_URL}/api/classes/${classId}`);
+          const response = await fetch(`${API_URL}/api/classes/${classId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            }
+          );
        
 
           if (response.ok) {
