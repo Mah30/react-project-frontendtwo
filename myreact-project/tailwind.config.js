@@ -1,7 +1,7 @@
 import flowbite from "flowbite-react/tailwind";
 /** @type {import('tailwindcss').Config} */
 
-/* const flowbite = require("flowbite-react/tailwind"); */
+/* const flowbite = require("flowbite-react/tailwind");  */
 
 export default {
     content: [

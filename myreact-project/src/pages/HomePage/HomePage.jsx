@@ -1,144 +1,75 @@
-import styles from '../HomePage/HomePage';
-/* import Carousel from 'react-material-ui-carousel'; */
-/* import img1 from '../../assets/images/img1.jpg';
-import img2 from '../../assets/images/img2.jpg';
-import img3 from '../../assets/images/img3.jpg';
-import img4 from '../../assets/images/img4.jpg';
-import img5 from '../../assets/images/img5.jpg'; */
-/* import SearchBar from '../../components/SearchBar';
-import CoursePage from '../CoursePage/CoursePage';
-import Space from '../../components/Space';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'; */
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import Button from '@mui/material/Button';
-/* import Box from '@mui/material/Box'; */
-import { Link } from 'react-router-dom';
-
-
-
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const HomePage = () => {
+  const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    return ( 
-        
-        <div>
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/classes/`);
+        if (response.ok) {
+          const data = await response.json();
+          setClasses(data);
+        } else {
+          console.error(`HTTP Error: ${response.status}`);
+          setError(`HTTP Error: ${response.status}`);
+        }
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-          {/*   <SearchBar/> */}
-            
-           {/*  <Carousel
-             NextIcon = {<ChevronRightIcon />}
-             PrevIcon = {<ChevronLeftIcon />}
-         
-            navButtonsAlwaysVisible 
-            animation="slide" 
-            navButtonsProps={{
-                style: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                    borderRadius: '50%',
-                    height: '40px',
-                    width: '40px', 
-                },
-            }}
-            navButtonsWrapperProps={{
-                style: {
-                position: 'absolute',
-                bottom: '-10px', 
-                left: '20%' ,
-            
-                transform: 'translateX(20%)', 
-                display: 'flex', 
-                justifyContent: 'center', 
-                gap: '5px',
-                 },
-            }}
-            >
-                
-            <div style={{ 
-                backgroundImage: `url(${img1})`, 
-                backgroundSize: "cover", 
-                backgroundPosition: "center", 
-                height: "300px", 
-                width: "100vw" 
-                }}
-                ></div>
-            <div style={{ 
-                backgroundImage: `url(${img2})`, 
-                backgroundSize: "cover", 
-                backgroundPosition: "center", 
-                height: "300px", 
-                width: "100vw" 
-                }}
-                ></div>
-            <div style={{ 
-                backgroundImage: `url(${img3})`, 
-                backgroundSize: "cover", 
-                backgroundPosition: "center", 
-                height: "300px", 
-                width: "100vw" 
-                }}
-                ></div>
-            <div style={{ 
-                backgroundImage: `url(${img4})`, 
-                backgroundSize: "cover", 
-                backgroundPosition: "center", 
-                height: "300px", 
-                width: "100vw" 
-                }}
-                ></div>
-            <div style={{ 
-                backgroundImage: `url(${img5})`, 
-                backgroundSize: "cover", 
-                backgroundPosition: "center", 
-                height: "300px", 
-                width: "100vw" 
-                }}
-                ></div>
+    fetchClasses();
+  }, []);
 
-            </Carousel> 
- */}
-           {/*  <Space /> */}
+  if (loading) return <p className="text-center text-gray-500">Loading classes...</p>;
+  if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
 
+  // Mostrar apenas as tres classes
+  const classesToDisplay = classes.slice(0, 3);
 
-            <h1 className= {styles.title}>The best FitnessStudio platform for you! </h1>
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        Find Your Perfect Class
+      </h1>
 
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {classesToDisplay.map((classData) => (
+          <div key={classData._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src={classData.image || "https://via.placeholder.com/400"} // Fallback image
+              alt={classData.name}
+              className="w-full h-52 object-cover"
+            />
 
-           {/*  <CoursePage isHomepage={true} /> */}
+            <div className="p-4">
+              <h2 className="text-xl font-semibold text-gray-900">{classData.name}</h2>
+              <p className="text-gray-600 text-sm mt-2">
+                {classData.description || "A great class to help you learn and grow."}
+              </p>
 
-             <div>  
-              <Button className={styles.btnposition}
-              color="primary"
-              variant="contained"
-            
-              sx={{
-              position: 'relative',
-              alignSelf: 'flex-end', 
-              margin: '16px 0', 
-              width: 'auto', 
-              padding: '8px 16px',
-              backgroundColor: '#1976d2',
-              color: 'white',
-              borderRadius: '6px',
-              boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
-              '@media (max-width: 768px)': {
-                display: 'block', 
-                margin: '0 auto', 
-              },
-              '&:hover': {
-                backgroundColor: '#bc3908',
-              },
-            }}
-            component={Link}
-            to="/coursepage"
-          >
-            Click for more
-            </Button>
-          </div> 
-          
-        </div>
-        
-     );
-}
- 
+              <Link
+                to={`/classes/${classData._id}`}
+                className="mt-4 inline-block text-blue-600 hover:underline"
+              >
+                View Details →
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default HomePage;

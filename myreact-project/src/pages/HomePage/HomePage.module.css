@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+    .btnposition {
+      top: auto;
+      bottom: 16px; /* Ajusta o botão em telas menores */
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .title{
+    font-size: 40px;
+    font-weight: bold;
+    color: #003049;
+    text-align: center;
+    margin: 2;
+   
+    margin-bottom: 10px;
+  }

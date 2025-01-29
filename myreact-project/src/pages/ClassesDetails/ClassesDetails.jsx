@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import Booking from "../Bookings/Booking";
 import { SessionContext } from "../../SessionContext/SessionContext";
 import DeleteClass from "./DeleteClass";
+import { Button } from "flowbite-react";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -11,7 +12,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const ClassesDetails = () => {
 
     const { token, tokenPayload } = useContext(SessionContext)
-    
+
     const { classId } = useParams(); 
     const [classData, setClassData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -71,18 +72,22 @@ const ClassesDetails = () => {
   
         
         <Link to="/classes">
-          <button>Back to Classes</button>
+          <Button color="gray">Back to Classes</Button>
         </Link>
 
          {
-          tokenPayload.isAdmin ? <Link to={`/classes/${classId}/update`}>
-             <button>Edit Class</button>
+          tokenPayload.isAdmin ? (
+          <Link to={`/classes/${classId}/update`}>
+             <Button>Edit Class</Button>
              <DeleteClass classId={classId} onDelete={() => setTimeout(() => navigate("/classes"), 1000)} />
-          </Link> :
+          </Link> 
+          
+         ):(
+
          /* Componente de reserva reutilizável */
       <Booking classId={classId} onBookingSuccess={() => console.log("Booking successful")} /> 
 
-         }
+    )}
 
       </div>
     );

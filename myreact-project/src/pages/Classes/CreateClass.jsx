@@ -11,11 +11,16 @@ const CreateClass = ({onCreate}) => {
   const { token, tokenPayload } = useContext(SessionContext)
 
   const [name, setName] = useState('');
-  const [capacity, setCapacity] = useState("0");
+  const [capacity, setCapacity] = useState("");
   const [schedule, setSchedule] = useState([]);
-  const [duration, setDuration] = useState("0");
+  const [duration, setDuration] = useState("");
+  const [description, setDescription] = useState('');
+  const [bookings, setBookings] = useState('')
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [image, setImage] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+  
 
 
   if (!(tokenPayload && tokenPayload.isAdmin)) {
@@ -27,15 +32,51 @@ const CreateClass = ({onCreate}) => {
   const handleCapacity = (event) => setCapacity(event.target.value);
   const handleSchedule = (event) => setSchedule(event.target.value);
   const handleDuration = (event) => setDuration(event.target.value);
+  const handleImageChange = (event) => setImageFile(event.target.value);
 
   const handleCreateClass = async (event) => {
     event.preventDefault();
+
+
+    const uploadedImageUrl = ""; 
+
+    // Se houver uma imagem, fazer upload antes de enviar a classe
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append("image", imageFile); 
+  
+      try {
+        const uploadResponse = await fetch(`${API_URL}/api/upload`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData, 
+        });
+  
+        if (!uploadResponse.ok) {
+          throw new Error("Error uploading image");
+        }
+  
+        const uploadData = await uploadResponse.json();
+        uploadedImageUrl = uploadData.imageUrl; 
+      } catch (error) {
+        console.error("Error uploading image:", error.message);
+        setError("Failed to upload image. Please try again.");
+        return;
+      }
+    }
+  
 
     const newClass = { 
       name: name,
       capacity: capacity,
       schedule: schedule,
-      duration: duration }
+      duration: duration,
+      description: description,
+      bookings: bookings,
+      image: image, }
+
 
       try {
         const createResponse = await fetch(
@@ -56,9 +97,15 @@ const CreateClass = ({onCreate}) => {
         // Redireciona a pessoa para a página de login após o cadastro bem-sucedido
         setSuccess("Class created successful!");
         setName("");
-        setCapacity("0");
+        setCapacity("");
         setSchedule([]);
-        setDuration("0");
+        setDuration("");
+        setDescription('');
+        setBookings();
+        setImageFile(null);
+        setImage();
+       
+
         if (onCreate) {
           onCreate();
         }
@@ -120,6 +167,16 @@ const CreateClass = ({onCreate}) => {
             value={duration}
             onChange={handleDuration}
             autoComplete="off"
+          />
+
+<label className="label" htmlFor="image">Upload Image</label>
+          <input
+            className="input"
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*" 
+            onChange={handleImageChange}
           />
 
 

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* General Theme Colors */
 :root {
   --primary-color: #0dad90; /* Deep purple for a luxurious touch */
@@ -312,7 +316,7 @@ color: white;
 }
 
 /* Forms */
-/* input,
+ input,
 textarea,
 select {
 border: 1px solid #e0e0e0;
@@ -328,7 +332,7 @@ select:focus {
 border-color: var(--accent-color);
 outline: none;
 box-shadow: 0 0 0 2px rgba(142, 68, 173, 0.3);
-} */
+} 
 
 
 /* Pricing Highlights */
