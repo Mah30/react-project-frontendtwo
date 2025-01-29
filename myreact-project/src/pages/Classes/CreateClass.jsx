@@ -15,7 +15,6 @@ const CreateClass = ({onCreate}) => {
   const [schedule, setSchedule] = useState([]);
   const [duration, setDuration] = useState("");
   const [description, setDescription] = useState('');
-  const [bookings, setBookings] = useState('')
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [image, setImage] = useState('');
@@ -74,7 +73,6 @@ const CreateClass = ({onCreate}) => {
       schedule: schedule,
       duration: duration,
       description: description,
-      bookings: bookings,
       image: image, }
 
 
@@ -101,7 +99,6 @@ const CreateClass = ({onCreate}) => {
         setSchedule([]);
         setDuration("");
         setDescription('');
-        setBookings();
         setImageFile(null);
         setImage();
        
