@@ -59,13 +59,13 @@ function App() {
         {/* Rotas protegidas */}
 
 
-        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />{/* PRIVATE PROFILE AQUI */}
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
         <Route path="/classes" element={<PrivateRoute><Classes/></PrivateRoute>} />
         <Route path="/myclasses" element={<PrivateRoute><MyClasses/></PrivateRoute>} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* PRIVATE PROFILE AQUI */}
-        <Route path="/classes/:classId" element={<ClassesDetails />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/classes/:classId" element={<PrivateRoute><ClassesDetails /></PrivateRoute>} /> 
         <Route path="/classes/:classId/update" element={<AdminRoute><UpdateClass /></AdminRoute>} />
-        <Route path="/bookings/:bookingId" element={<BookingDetails />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/bookings/:bookingId" element={<PrivateRoute><BookingDetails /></PrivateRoute>} /> 
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<NotFoundPage />} />

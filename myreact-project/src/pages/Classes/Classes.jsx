@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CreateClass from "./CreateClass";
+import { SessionContext } from "../../SessionContext/SessionContext";
+
+
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -10,6 +13,9 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   const [error, setError] = useState(null); 
   const [selectedClass, setSelectedClass] = useState()
   
+
+   const { tokenPayload } = useContext(SessionContext); 
+
 
   // Função para buscar as classes do backend
   const fetchClasses = async () => {
@@ -35,7 +41,7 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
     fetchClasses();
   }, []); 
 
-    /* setClasses(mockClasses) */; // Insere os títulos fornecidos no estado
+
     /* setLoading(false); */ // Finaliza o carregamento
    
     if (loading) return <p>Loading classes...</p>;
@@ -54,18 +60,35 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   return (
     <div>
       {selectedClass ? (
-        <ClassDetails  /* Quando for definida, apagar lá em cima esta como children */
+        <ClassDetails 
           classData={selectedClass}
           onBack={() => setSelectedClass(null)}
         />
       ) : (
         
-        <section>
+        <section style={{display: "-ms-grid", gridTemplateColumns:"repeatauto-fit, minmax(250px, 1fr))", gap: "16px", padding: "20px" }}>
           <ul>
+
             {classesToDisplay.map((classData) => (
               <li key={classData._id}>
 
-                <Link to={`/classes/${classData._id}`}>{classData.name}</Link>
+                <Link to={`/classes/${classData._id}`}>{classData.name}
+
+                {tokenPayload?.isAdmin && (
+                <button 
+                style={{ 
+                  marginRight: "10px", 
+                  padding: "8px 12px", 
+                  backgroundColor: "#4CAF50", 
+                  color: "white", 
+                  border: "none", 
+                  cursor: "pointer" }}>
+                      Update
+                </button>
+                )}
+
+                </Link>
+
               </li>
             ))}
           </ul>
