@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const MyFooter = () => {
     return (
-        <Footer id="footer" className="w-full bg-white shadow dark:bg-gray-800 md:flex md:items-center md:justify-between mt-0" style={{ marginTop: '0px' }}>
+        <Footer id="footer" className="" style={{ marginTop: '0px' }}>
       <Footer.Copyright by="FitnessStudio™" year={2025} className="p-4" />
       <Footer.LinkGroup className="pr-4">
         <NavLink to="/about" className="p-4">About</NavLink>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import training from '../../assets/images/training.jpg';
+import Space from '../../components/Space';
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -39,6 +41,19 @@ const HomePage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
+
+            
+    <div style={{ 
+                backgroundImage: `url(${training})`, 
+                backgroundSize: "cover", 
+                backgroundPosition: "center", 
+                height: "600px", 
+                width: "100vw" 
+                }}
+                ></div>
+
+                <Space />
+
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
         Find Your Perfect Class
       </h1>

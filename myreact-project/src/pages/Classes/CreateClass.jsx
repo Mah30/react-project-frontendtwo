@@ -37,7 +37,7 @@ const CreateClass = ({onCreate}) => {
     event.preventDefault();
 
 
-    const uploadedImageUrl = ""; 
+    let uploadedImageUrl = ""; 
 
     // Se houver uma imagem, fazer upload antes de enviar a classe
     if (imageFile) {

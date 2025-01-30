@@ -80,47 +80,52 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
 
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-        Your Perfect Class is Here!
-      </h1>
-
-      {selectedClass ? (
-        <ClassDetails 
-          classData={selectedClass}
-          onBack={() => setSelectedClass(null)}
-        />
-      ) : (
-        
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-          {classesToDisplay.map((classData) => (
-            <Card key={classData._id} className="max-w-sm mx-auto shadow-lg">
-              
-              
-              <img
-                src={imagesMap[classData.name] || "https://placeholder.com/400"} 
-                alt={classData.name}
-                className="w-full h-52 object-cover rounded-t-lg"
-              />
-
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">{classData.name}</h3>
-                <p className="text-sm text-gray-600">{classData.description || "No description available"}</p>
-
-                <div className="flex justify-end mt-4">
-                  <Link to={`/classes/${classData._id}`}>
-                    <Button color="blue">View Details</Button>
-                  </Link>
+      <div>
+        <h1>
+          Your Perfect Class is Here!
+        </h1>
+  
+        {selectedClass ? (
+          <ClassDetails classData={selectedClass} onBack={() => setSelectedClass(null)} />
+        ) : (
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+            {classesToDisplay.map((classData) => (
+              <Card
+                key={classData._id}
+                className="max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden border border-gray-200"
+              >
+                {/* Imagem da Classe */}
+                <div className="w-full h-40 bg-gray-200">
+                  <img
+                    src={imagesMap[classData.name] || "https://placeholder.com/400"}
+                    alt={classData.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
-            </Card>
-          ))}
-        </section>
-      )}
-
-      <CreateClass onCreate={fetchClasses} />
-    </div>
-  );
-};
+  
+                {/* Conteúdo do Card */}
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-800">{classData.name}</h3>
+                  <p className="text-sm text-gray-600">
+                    {classData.description || "No description available"}
+                  </p>
+  
+                  {/* Botão de Visualização */}
+                  <div className="flex justify-end mt-4">
+                    <Link to={`/classes/${classData._id}`}>
+                      <Button color="blue">View Details</Button>
+                    </Link>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </section>
+        )}
+  
+        <CreateClass onCreate={fetchClasses} />
+      </div>
+    );
+  };
+  
  
 export default Classes;
