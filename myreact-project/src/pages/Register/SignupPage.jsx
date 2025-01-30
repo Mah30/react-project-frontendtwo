@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
+import { Button } from "flowbite-react";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -114,6 +115,10 @@ const SignupPage = () => {
 
           {/* Botão para criar conta */}
           <button className="mt-4" type="submit">Create Account</button>
+
+          <Link to="/">
+            <Button color="blue">Back to Home</Button>
+          </Link>
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}

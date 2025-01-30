@@ -11,7 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const ClassesDetails = () => {
 
-    const { token, tokenPayload } = useContext(SessionContext)
+    const { token, tokenPayload } = useContext(SessionContext) //para verificar se é admin
 
     const { classId } = useParams(); 
     const [classData, setClassData] = useState(null);
@@ -72,7 +72,7 @@ const ClassesDetails = () => {
   
         
         <Link to="/classes">
-          <Button color="gray">Back to Classes</Button>
+          <Button color="blue">Back to Classes</Button>
         </Link>
 
          {

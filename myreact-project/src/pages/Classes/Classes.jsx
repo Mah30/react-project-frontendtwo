@@ -1,11 +1,33 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Card, Button } from "flowbite-react";
 import CreateClass from "./CreateClass";
 import { SessionContext } from "../../SessionContext/SessionContext";
+
+import AdvancedYoga from "../../assets/images/AdvancedYoga.jpg";
+import BasicYoga from "../../assets/images/BasicYoga.jpg";
+import CrossFit from "../../assets/images/CrossFit.jpg";
+import Fitnessdance from "../../assets/images/Fitnessdance.jpg";
+import Jump from "../../assets/images/Jump.jpg";
+import Pilates from "../../assets/images/Pilates.jpg";
+import RhythmicGymnastics from "../../assets/images/RhythmicGymnastics.jpg";
 
 
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+
+const imagesMap = {
+  "Advanced Yoga": AdvancedYoga,
+  "Basic Yoga": BasicYoga,
+  "CrossFit": CrossFit,
+  "Fitness dance": Fitnessdance,
+  "Jump": Jump,
+  "Pilates": Pilates,
+  "Rhythmic Gymnastics": RhythmicGymnastics,
+
+}
+
 
 const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   const [classes, setClasses] = useState([]); 
@@ -14,7 +36,7 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   const [selectedClass, setSelectedClass] = useState()
   
 
-   const { tokenPayload } = useContext(SessionContext); 
+   const { tokenPayload } = useContext(SessionContext); //p verificar se é admin
 
 
   // Função para buscar as classes do backend
@@ -50,7 +72,7 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
 
   // Filtra o número de classes a exibir
   const classesToDisplay = isHomepage
-    ? classes.slice(0, 4)
+    ? classes.slice(0, 3)
     : isUserSpace
     ? classes.slice(0, 2)
     : classes;
@@ -59,6 +81,10 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        Your Perfect Class is Here!
+      </h1>
+
       {selectedClass ? (
         <ClassDetails 
           classData={selectedClass}
@@ -66,32 +92,29 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
         />
       ) : (
         
-        <section style={{display: "-ms-grid", gridTemplateColumns:"repeatauto-fit, minmax(250px, 1fr))", gap: "16px", padding: "20px" }}>
-          <ul>
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+          {classesToDisplay.map((classData) => (
+            <Card key={classData._id} className="max-w-sm mx-auto shadow-lg">
+              
+              
+              <img
+                src={imagesMap[classData.name] || "https://placeholder.com/400"} 
+                alt={classData.name}
+                className="w-full h-52 object-cover rounded-t-lg"
+              />
 
-            {classesToDisplay.map((classData) => (
-              <li key={classData._id}>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-800">{classData.name}</h3>
+                <p className="text-sm text-gray-600">{classData.description || "No description available"}</p>
 
-                <Link to={`/classes/${classData._id}`}>{classData.name}
-
-                {tokenPayload?.isAdmin && (
-                <button 
-                style={{ 
-                  marginRight: "10px", 
-                  padding: "8px 12px", 
-                  backgroundColor: "#4CAF50", 
-                  color: "white", 
-                  border: "none", 
-                  cursor: "pointer" }}>
-                      Update
-                </button>
-                )}
-
-                </Link>
-
-              </li>
-            ))}
-          </ul>
+                <div className="flex justify-end mt-4">
+                  <Link to={`/classes/${classData._id}`}>
+                    <Button color="blue">View Details</Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
+          ))}
         </section>
       )}
 

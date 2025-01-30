@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import {SessionContext} from '../../SessionContext/SessionContext';
+import { Button } from "flowbite-react";
 
 
 
@@ -98,7 +99,11 @@ const LoginPage = () => {
           />
 
           {/* Botão para fazer login */}
-          <button className="mt-4" type="submit">Log In</button>
+          <Button className="mt-4" type="submit">Log In</Button>
+
+             <Link to="/">
+                <Button color="blue">Back to Home</Button>
+              </Link>
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}

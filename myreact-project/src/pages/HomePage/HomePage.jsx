@@ -47,7 +47,7 @@ const HomePage = () => {
         {classesToDisplay.map((classData) => (
           <div key={classData._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-              src={classData.image || "https://via.placeholder.com/400"} // Fallback image
+              src={classData.image || "https://placeholder.com/400"} 
               alt={classData.name}
               className="w-full h-52 object-cover"
             />
