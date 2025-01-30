@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Card } from "flowbite-react";
 import { SessionContext } from "../../SessionContext/SessionContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -154,6 +156,12 @@ const UpdateClass = () => {
 
           {/* Botão para criar conta */}
           <button className="mt-4" type="submit">Update Class</button>
+
+          <Link to="/classes">
+          <Button color="blue">Back to Classes</Button>
+
+        </Link>
+
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}
