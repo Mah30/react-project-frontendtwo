@@ -60,7 +60,7 @@ function App() {
 
 
         <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-        <Route path="/classes" element={<PrivateRoute><Classes/></PrivateRoute>} />
+        <Route path="/classes" element={<PrivateRoute><Classes/></PrivateRoute>} /> {/* PRIVATE ROUTE AQUI */}
         <Route path="/myclasses" element={<PrivateRoute><MyClasses/></PrivateRoute>} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* PRIVATE PROFILE AQUI */}
         <Route path="/classes/:classId" element={<PrivateRoute><ClassesDetails /></PrivateRoute>} /> 

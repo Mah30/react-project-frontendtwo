@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Card, Button } from "flowbite-react";
+import {  Button } from "flowbite-react";
 import CreateClass from "./CreateClass";
 import { SessionContext } from "../../SessionContext/SessionContext";
 
@@ -84,48 +84,65 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
         <h1>
           Your Perfect Class is Here!
         </h1>
-  
+
+
         {selectedClass ? (
-          <ClassDetails classData={selectedClass} onBack={() => setSelectedClass(null)} />
-        ) : (
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-            {classesToDisplay.map((classData) => (
-              <Card
-                key={classData._id}
-                className="max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden border border-gray-200"
-              >
-                {/* Imagem da Classe */}
-                <div className="w-full h-40 bg-gray-200">
-                  <img
-                    src={imagesMap[classData.name] || "https://placeholder.com/400"}
-                    alt={classData.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+  <ClassDetails classData={selectedClass} onBack={() => setSelectedClass(null)} />
+) : (
   
-                {/* Conteúdo do Card */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-800">{classData.name}</h3>
-                  <p className="text-sm text-gray-600">
-                    {classData.description || "No description available"}
-                  </p>
+  <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {classesToDisplay.map((classData) => (
+      <div
+        key={classData._id}
+        className="bg-white mx-auto rounded-lg shadow-md overflow-hidden"
+        >
+          
+        {/* "max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden border border-gray-200" */}
+        
+        {/* Imagem da Classe */}
+        <div className="w-full h-40 bg-gray-200">
+          <img
+            src={imagesMap[classData.name] || "https://placeholder.com/400"}
+            alt={classData.name}
+            className="w-full h-52 object-cover"
+          />
+        </div>
+
+        {/* Conteúdo do Card */}
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-gray-900">
+            {classData.name}</h3>
+          <p className="text-gray-600 text-sm mt-2">
+            {classData.description || "No description available"}
+          </p>
+
+          {/* Botão de Visualização */}
+          <div className="flex justify-end mt-4">
+            <Link to={`/classes/${classData._id}`}>
+              <Button color="blue">View Details</Button>
+            </Link>
+          </div>
+        </div>
+        </div>
+    ))}
+  </section>
+)}
+
+<CreateClass onCreate={fetchClasses} />
+
+        
+
+        
   
-                  {/* Botão de Visualização */}
-                  <div className="flex justify-end mt-4">
-                    <Link to={`/classes/${classData._id}`}>
-                      <Button color="blue">View Details</Button>
-                    </Link>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </section>
-        )}
-  
-        <CreateClass onCreate={fetchClasses} />
+        
       </div>
     );
   };
   
  
 export default Classes;
+
+
+
+
+

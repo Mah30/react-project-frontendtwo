@@ -1,9 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import training from '../../assets/images/training.jpg';
+/* import training from '../../assets/images/training.jpg'; */
+/* import training2 from '../../assets/images/training2.jpg'; */
+import training3 from '../../assets/images/training3.jpg';
 import Space from '../../components/Space';
+/* import Classes from "../Classes/Classes"; */
+import AdvancedYoga from "../../assets/images/AdvancedYoga.jpg";
+import BasicYoga from "../../assets/images/BasicYoga.jpg";
+import Pilates from "../../assets/images/Pilates.jpg";
+import { Button } from "flowbite-react";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+const imagesMap = {
+  "Advanced Yoga": AdvancedYoga,
+  "Basic Yoga": BasicYoga,
+  "Pilates": Pilates,
+}
 
 const HomePage = () => {
   const [classes, setClasses] = useState([]);
@@ -36,21 +49,21 @@ const HomePage = () => {
   if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
 
+  
   // Mostrar apenas as tres classes
   const classesToDisplay = classes.slice(0, 3);
 
-  return (
+  return (<>
+    <div style={{ 
+      backgroundImage: `url(${training3})`, 
+      backgroundSize: "cover", 
+      backgroundPosition: "center", 
+      height: "600px", 
+      width: "100vw" 
+      }}
+      ></div>
     <div className="max-w-7xl mx-auto px-4 py-10">
 
-            
-    <div style={{ 
-                backgroundImage: `url(${training})`, 
-                backgroundSize: "cover", 
-                backgroundPosition: "center", 
-                height: "600px", 
-                width: "100vw" 
-                }}
-                ></div>
 
                 <Space />
 
@@ -58,11 +71,13 @@ const HomePage = () => {
         Find Your Perfect Class
       </h1>
 
+      {/* <Classes isHomepage={true} /> */}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {classesToDisplay.map((classData) => (
           <div key={classData._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-              src={classData.image || "https://placeholder.com/400"} 
+               src={imagesMap[classData.name] || "https://placeholder.com/400"}
               alt={classData.name}
               className="w-full h-52 object-cover"
             />
@@ -77,13 +92,15 @@ const HomePage = () => {
                 to={`/classes/${classData._id}`}
                 className="mt-4 inline-block text-blue-600 hover:underline"
               >
-                View Details →
+                <Button color="blue"> View Details </Button>
+               
               </Link>
             </div>
           </div>
         ))}
       </div>
     </div>
+    </>
   );
 };
 

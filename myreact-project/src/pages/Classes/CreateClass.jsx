@@ -15,7 +15,7 @@ const CreateClass = ({onCreate}) => {
   const [schedule, setSchedule] = useState([]);
   const [duration, setDuration] = useState("");
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+ /*  const [image, setImage] = useState(''); */
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -126,7 +126,7 @@ const CreateClass = ({onCreate}) => {
         setDescription('');
         setImageFile(null);
         setImageUrl("");
-        setImage();
+    
         setUploading(true);    
 
         if (onCreate) {
