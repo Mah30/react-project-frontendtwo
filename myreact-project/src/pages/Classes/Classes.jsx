@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {  Button } from "flowbite-react";
+import { Button } from "flowbite-react";
 import CreateClass from "./CreateClass";
 import { SessionContext } from "../../SessionContext/SessionContext";
 
@@ -11,6 +11,7 @@ import Fitnessdance from "../../assets/images/Fitnessdance.jpg";
 import Jump from "../../assets/images/Jump.jpg";
 import Pilates from "../../assets/images/Pilates.jpg";
 import RhythmicGymnastics from "../../assets/images/RhythmicGymnastics.jpg";
+import Space from '../../components/Space';
 
 
 
@@ -81,7 +82,8 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
 
   return (
       <div>
-        <h1>
+        <Space />
+        <h1 className="text-xl font-semibold text-gray-900">
           Your Perfect Class is Here!
         </h1>
 
@@ -94,19 +96,19 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
     {classesToDisplay.map((classData) => (
       <div
         key={classData._id}
-        className="bg-white mx-auto rounded-lg shadow-md overflow-hidden"
+        className="bg-white  rounded-lg shadow-md overflow-hidden"
         >
           
         {/* "max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden border border-gray-200" */}
         
         {/* Imagem da Classe */}
-        <div className="w-full h-40 bg-gray-200">
+       
           <img
             src={imagesMap[classData.name] || "https://placeholder.com/400"}
             alt={classData.name}
             className="w-full h-52 object-cover"
           />
-        </div>
+       
 
         {/* Conteúdo do Card */}
         <div className="p-4">

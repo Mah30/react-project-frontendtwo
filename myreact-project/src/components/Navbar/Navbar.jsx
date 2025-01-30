@@ -36,7 +36,7 @@ import { Link } from 'react-router-dom';
           </IconButton>
           {/* Título da Navbar */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            FitnessStudio
+           FitnessStudio
           </Typography>
 
           {isAuthenticated ? (

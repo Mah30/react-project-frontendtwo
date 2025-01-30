@@ -5,18 +5,25 @@ import { Link } from "react-router-dom";
 import training3 from '../../assets/images/training3.jpg';
 import Space from '../../components/Space';
 /* import Classes from "../Classes/Classes"; */
+import { Button } from "flowbite-react";
+
 import AdvancedYoga from "../../assets/images/AdvancedYoga.jpg";
 import BasicYoga from "../../assets/images/BasicYoga.jpg";
 import Pilates from "../../assets/images/Pilates.jpg";
-import { Button } from "flowbite-react";
+;
+
+
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 
 const imagesMap = {
   "Advanced Yoga": AdvancedYoga,
   "Basic Yoga": BasicYoga,
   "Pilates": Pilates,
 }
+
+
 
 const HomePage = () => {
   const [classes, setClasses] = useState([]);
