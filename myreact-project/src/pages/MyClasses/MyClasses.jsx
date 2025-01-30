@@ -75,12 +75,15 @@ const MyClasses = () => {
             
           <li key={classItem.bookingId}>
             <h3>{classItem.name}</h3>
+            { classItem.schedule ? 
             <p>
               <strong>Schedule:</strong>{" "}
               {classItem.schedule.map((date) =>
                 new Date(date).toLocaleString()
               ).join(", ")}
             </p>
+            : <p>No schedule defined yet</p>
+}
             <p>
               <strong>Duration:</strong> {classItem.duration} minutes
             </p>
