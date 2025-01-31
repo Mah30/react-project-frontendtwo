@@ -9,7 +9,7 @@ import Footer from '../src/components/Footbar/Footer';
 import LoginPage from './pages/Login/LoginPage';
 import SignupPage from './pages/Register/SignupPage';
 import HomePage from './pages/HomePage/HomePage';
-import Dashboard from './pages/Dashboard/Dashboard';
+
 /* import ClassesDetails from './pages/ClassesDetails';
  */import BookingDetails from './pages/BookingDetailsPage/BookingDetailsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
@@ -29,6 +29,7 @@ import Classes from './pages/Classes/Classes';
 import MyClasses from './pages/MyClasses/MyClasses';
 import UpdateClass from './pages/ClassesDetails/UpdateClass';
 import AdminRoute from './components/AdminRoute';
+import AboutPage from './pages/Aboutpage';
 
 
 
@@ -62,7 +63,7 @@ function App() {
         <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
         <Route path="/classes" element={<PrivateRoute><Classes/></PrivateRoute>} /> {/* PRIVATE ROUTE AQUI */}
         <Route path="/myclasses" element={<PrivateRoute><MyClasses/></PrivateRoute>} />
-        <Route path="/dashboard" element={<Dashboard />} /> {/* PRIVATE PROFILE AQUI */}
+        <Route path="/about" element={<AboutPage />} /> 
         <Route path="/classes/:classId" element={<PrivateRoute><ClassesDetails /></PrivateRoute>} /> 
         <Route path="/classes/:classId/update" element={<AdminRoute><UpdateClass /></AdminRoute>} />
         <Route path="/bookings/:bookingId" element={<PrivateRoute><BookingDetails /></PrivateRoute>} /> 

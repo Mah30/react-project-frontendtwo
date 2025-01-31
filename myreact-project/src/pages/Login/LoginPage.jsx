@@ -99,11 +99,17 @@ const LoginPage = () => {
           />
 
           {/* Botão para fazer login */}
-          <Button className="mt-4" type="submit">Log In</Button>
+          <div className="flex justify-between space-x-4 mt-2">
+          <Button  className= " text-white px-6 py-3 rounded-lg"
+          type="submit">Log In</Button>
 
              <Link to="/">
                 <Button color="blue">Back to Home</Button>
               </Link>
+
+          </div>
+
+
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}
@@ -113,10 +119,10 @@ const LoginPage = () => {
         {success && <p className="text-green-500 text-center mb-4">{success}</p>}
 
         {/* Link para a página de cadastro */}
-        <p className="ml-4">
+        <p className="mt-4 text-gray-700">
           Don&lsquo;t have an account? 
           <span>
-            <Link to="/signup">
+            <Link to="/signup" className="text-blue-600 hover:underline ml-1">
               Sign up
             </Link>
           </span>

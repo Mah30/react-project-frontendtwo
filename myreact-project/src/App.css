@@ -4,8 +4,8 @@
 
 /* General Theme Colors */
 :root {
-  --primary-color: #0dad90; /* Deep purple for a luxurious touch */
-  --secondary-color: #3e83b4; /* Fresh green for highlights */
+  --primary-color: #0dad90; /* Deep purple */
+  --secondary-color: #003049; /* Fresh green for highlights */
   --background-color: #f8f9fa; /* Soft off-white for backgrounds */
   --text-color: #333333; /* Dark gray for readability */
   --accent-color: #68cad7; /* Bright purple for active states */
@@ -59,6 +59,7 @@ button {
 
 button:hover {
   background-color: var(--hover-color);
+  text-decoration: none;
 }
 
 button:disabled {

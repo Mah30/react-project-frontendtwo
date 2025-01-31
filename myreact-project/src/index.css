@@ -12,6 +12,22 @@
     
 }
 
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+ 
+}
+
+@media (max-width: 769px) {
+  body {
+    background-color: rgb(203, 230, 239);
+  }
+
+  .MuiToolbar-root > :last-child {
+    display: none;
+  }
+}
+
 
 
 /* :root {
