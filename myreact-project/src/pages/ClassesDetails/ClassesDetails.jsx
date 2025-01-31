@@ -78,6 +78,7 @@ const ClassesDetails = () => {
          {
           tokenPayload.isAdmin ? (
           <Link to={`/classes/${classId}/update`}>
+            
              <Button>Edit Class</Button>
              <DeleteClass classId={classId} onDelete={() => setTimeout(() => navigate("/classes"), 1000)} />
           </Link> 

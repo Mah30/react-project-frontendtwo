@@ -20,10 +20,21 @@ import { Link } from 'react-router-dom';
 
   const navigate = useNavigate();
 
+/*   const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setState({ ...state, [anchor]: open });
+  };
+ */
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="static"
+      sx = {{backgroundColor: '#003049'}}> {/* cor do navbar */}
+
+        <Toolbar >
           {/* Ícone do menu */}
           <IconButton
             size="large"
@@ -31,7 +42,11 @@ import { Link } from 'react-router-dom';
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            /* onClick={toggleDrawer('left', true)} */ 
           >
+
+
+
             <MenuIcon />
           </IconButton>
           {/* Título da Navbar */}
