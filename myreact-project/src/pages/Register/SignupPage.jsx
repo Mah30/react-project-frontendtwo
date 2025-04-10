@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
-import { Button } from "flowbite-react";
-
+/* import { Button } from "flowbite-react";
+ */
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -59,86 +59,92 @@ const SignupPage = () => {
   }
   
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 ..." >
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-100 to-blue-200 p-4">
+      <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 flex flex-col justify-between h-[600px] bg-white/90 backdrop-blur shadow-xl border border-white rounded-xl">
+        <form onSubmit={handleSignupSubmit} className="space-y-4">
+          
+          <h3 className="text-center text-2xl font-bold text-gray-800 mb-4">Sign Up for Fitness</h3>
+  
+          {/* Nome */}
+          <label className="label" htmlFor="firstname">First Name</label>
 
-        <form onSubmit={handleSignupSubmit} className="p-4">
-          <h3 className="text-center font-bold mb-4">Sign Up</h3>
-
-          {/* Campo de entrada para nome */}
-          <label className="label" htmlFor="firstname">Name</label>
-          <input
-            className="input"
-            type="text"
-            name="name"
-            id="firstname"
-            value={firstName}
-            onChange={handleFirstName}
-            placeholder="Type your first name"
-            autoComplete="off"
-          />
             <input
-            className="input"
-            type="text"
-            name="name"
-            id="lastname"
-            value={lastName}
-            onChange={handleLastName}
-            placeholder="Type your last name"
-            autoComplete="off"
-          />
-
-          {/* Campo de entrada para email */}
+              className="input"
+              type="text"
+              name="firstname"
+              id="firstname"
+              value={firstName}
+              onChange={handleFirstName}
+              placeholder="Your first name"
+              autoComplete="off"
+            />
+  
+            <input
+              className="input"
+              type="text"
+              name="lastname"
+              id="lastname"
+              value={lastName}
+              onChange={handleLastName}
+              placeholder="Your last name"
+              autoComplete="off"
+            />
+    
+          {/* Email */}
           <label className="label" htmlFor="email">Email</label>
-          <input
-            className="input"
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={handleEmail}
-            autoComplete="off"
-          />
-
-          {/* Campo de entrada para senha */}
+            <input
+              className="input"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleEmail}
+              placeholder="you@example.com"
+              autoComplete="off"
+            />
+  
+          {/* Senha */}
           <label className="label" htmlFor="password">Password</label>
-          <input
-            className="input"
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={handlePassword}
-            autoComplete="off"
-          />
-
-
-          {/* Botão para criar conta */}
-          <button className="mt-4" type="submit">Create Account</button>
-
-          <Link to="/">
-            <Button color="blue">Back to Home</Button>
+            <input
+              className="input"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={handlePassword}
+              placeholder="••••••••"
+              autoComplete="off"
+            />
+  
+          {/* Botão de criação */}
+          <button className="w-full bg-green-600 text-white rounded py-2 font-bold hover:bg-green-700 transition mt-4" type="submit">
+            Create Account
+          </button>
+  
+          {/* Botão de voltar */}
+          <Link to="/" className="block text-center text-sm text-blue-600 hover:underline mt-2">
+            ⬅ Back to Home
           </Link>
         </form>
-
-        {/* Mensagem de erro exibida se houver um erro */}
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-
-        {/* Mensagem de sucesso */}
-        {success && <p className="text-green-500 text-center mb-4">{success}</p>}
-
-        {/* Link para a página de login */}
-        <p className="ml-4"> 
-          Already have an account? 
-          <span>
-            <Link to="/login">
-              Log in
-            </Link>
-          </span>
-        </p>
+  
+        {/* Mensagens */}
+        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+        {success && <p className="text-green-500 text-center mt-4">{success}</p>}
+  
+        {/* Link para login */}
+        <div className="flex justify-end mt-2">
+          <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link to="/login" className="text-blue-600 hover:underline font-medium">
+                Log in
+              </Link>
+          </p>
+        </div>
+        
       </Card>
     </div>
   );
+  
 }
 
 export default SignupPage;

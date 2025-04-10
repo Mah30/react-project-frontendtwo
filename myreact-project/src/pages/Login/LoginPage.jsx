@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import {SessionContext} from '../../SessionContext/SessionContext';
-import { Button } from "flowbite-react";
+/* import { Button } from "flowbite-react"; */
 
 
 
@@ -67,8 +67,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 ...">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-100 to-blue-200 p-4">
+      <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 flex flex-col justify-between h-[430px] bg-white/90 backdrop-blur shadow-xl border-white rounded-xl">
+        
         <form onSubmit={handleLoginSubmit} className="p-4">
           <h3 className="text-center font-bold mb-4">Log In</h3>
 
@@ -99,17 +100,14 @@ const LoginPage = () => {
           />
 
           {/* Botão para fazer login */}
-          <div className="flex justify-between space-x-4 mt-2">
-          <Button  className= " text-white px-6 py-3 rounded-lg"
-          type="submit">Log In</Button>
+          <button className="w-full bg-green-600 text-white rounded py-2 font-bold hover:bg-green-700 transition mt-4" type="submit">
+            Log In
+          </button>
 
-             <Link to="/">
-                <Button color="blue">Back to Home</Button>
-              </Link>
-
-          </div>
-
-
+             {/* Botão de voltar */}
+          <Link to="/" className="block text-center text-sm text-blue-600 hover:underline mt-2">
+            ⬅ Back to Home
+          </Link>
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}
@@ -118,15 +116,16 @@ const LoginPage = () => {
         {/* Mensagem de sucesso */}
         {success && <p className="text-green-500 text-center mb-4">{success}</p>}
 
-        {/* Link para a página de cadastro */}
-        <p className="mt-4 text-gray-700">
+        <div className="flex justify-end mt-2">
+          <p className="text-sm text-gray-600">
           Don&lsquo;t have an account? 
-          <span>
+         
             <Link to="/signup" className="text-blue-600 hover:underline ml-1">
               Sign up
             </Link>
-          </span>
+          
         </p>
+        </div>
       </Card>
     </div>
   );
