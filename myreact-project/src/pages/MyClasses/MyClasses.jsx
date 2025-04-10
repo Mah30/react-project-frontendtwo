@@ -70,7 +70,12 @@ const MyClasses = () => {
 
       {/* Lista as classes do estudante */}
       <ul>
-        {classes.length === 0 && !loading && <p>No classes found.</p>}
+        {classes.length === 0 && !loading && !error && (
+          <div style={{ marginTop: '1rem', fontStyle: 'italic', color: '#444' }}>
+          <p>📚 You don`&apos;`t have any booked classes yet.</p>
+          <p>✨ Why not get started now? Visit the classes page to explore your options!</p>
+        </div>
+        )}
         {classes.map((classItem) => (
             
           <li key={classItem.bookingId}>

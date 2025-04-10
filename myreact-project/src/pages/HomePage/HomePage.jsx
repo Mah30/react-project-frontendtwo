@@ -10,7 +10,7 @@ import { Button } from "flowbite-react";
 import AdvancedYoga from "../../assets/images/AdvancedYoga.jpg";
 import BasicYoga from "../../assets/images/BasicYoga.jpg";
 import Pilates from "../../assets/images/Pilates.jpg";
-;
+import DefaultImage from "../../assets/images/DefaultImage.jpg"
 
 
 
@@ -84,7 +84,7 @@ const HomePage = () => {
         {classesToDisplay.map((classData) => (
           <div key={classData._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-               src={imagesMap[classData.name] || "https://placeholder.com/400"}
+               src={imagesMap[classData.name] || DefaultImage}
               alt={classData.name}
               className="w-full h-52 object-cover"
             />

@@ -12,6 +12,7 @@ import Jump from "../../assets/images/Jump.jpg";
 import Pilates from "../../assets/images/Pilates.jpg";
 import RhythmicGymnastics from "../../assets/images/RhythmicGymnastics.jpg";
 import Space from '../../components/Space';
+import DefaultImage from "../../assets/images/DefaultImage.jpg";
 
 
 
@@ -38,6 +39,11 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   
 
    const { tokenPayload } = useContext(SessionContext); //p verificar se é admin
+   {tokenPayload?.isAdmin && (
+    <CreateClass onCreate={fetchClasses} />
+   )}
+
+   
 
 
   // Função para buscar as classes do backend
@@ -104,7 +110,7 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
         {/* Imagem da Classe */}
        
           <img
-            src={imagesMap[classData.name] || "https://placeholder.com/400"}
+            src={imagesMap[classData.name] || DefaultImage}
             alt={classData.name}
             className="w-full h-52 object-cover"
           />
