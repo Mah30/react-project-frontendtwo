@@ -63,7 +63,7 @@ const SignupPage = () => {
       <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 flex flex-col justify-between h-[600px] bg-white/90 backdrop-blur shadow-xl border border-white rounded-xl">
         <form onSubmit={handleSignupSubmit} className="space-y-4">
           
-          <h3 className="text-center text-2xl font-bold text-gray-800 mb-4">Sign Up for Fitness</h3>
+          <h3 className="text-center text-2x1 font-bold text-gray-800 mb-4">Sign Up for Fitness</h3>
   
           {/* Nome */}
           <label className="label" htmlFor="firstname">First Name</label>

@@ -55,41 +55,49 @@ const ClassesDetails = () => {
     if (error) return <p>Error: {error}</p>;
    
    
-    return ( 
-        <div>
-        <h1>{classData.name}</h1>
-        <p><strong>Capacity:</strong> {classData.capacity}</p>
-        <p><strong>Duration:</strong> {classData.duration} minutes</p>
-        <p><strong>Schedule:</strong></p>
-        
-        <ul>
-          {classData.schedule.map((date, index) => (
-            <li key={index}>{new Date(date).toLocaleString()}</li>
-          ))}
-        </ul>
-        
-        <p><strong>Bookings:</strong> {classData.bookings.length}</p>
-  
-        
-        <Link to="/classes">
-          <Button color="blue">Back to Classes</Button>
-        </Link>
-
-         {
-          tokenPayload.isAdmin ? (
-          <Link to={`/classes/${classId}/update`}>
-            
-             <Button>Edit Class</Button>
-             <DeleteClass classId={classId} onDelete={() => setTimeout(() => navigate("/classes"), 1000)} />
-          </Link> 
+    return (
+      <div className="p-6 max-w-3xl mx-auto bg-white shadow-md rounded-lg text-gray-800">
+        <h1 className="text-3xl font-bold mb-4 text-blue-800">{classData.name}</h1>
+    
+        <div className="space-y-2 mb-6">
+          <p><strong>Capacity:</strong> {classData.capacity}</p>
+          <p><strong>Duration:</strong> {classData.duration} minutes</p>
           
-         ):(
-
-         /* Componente de reserva reutilizável */
-      <Booking classId={classId} onBookingSuccess={() => console.log("Booking successful")} /> 
-
-    )}
-
+          <div>
+            <p className="font-semibold">Schedule:</p>
+            <ul className="list-disc list-inside">
+              {classData.schedule.map((date, index) => (
+                <li key={index}>{new Date(date).toLocaleString()}</li>
+              ))}
+            </ul>
+          </div>
+    
+          <p><strong>Bookings:</strong> {classData.bookings.length}</p>
+        </div>
+    
+        <div className="flex flex-wrap items-center gap-4 mb-6">
+          <Link to="/classes">
+            <Button color="blue">Back to Classes</Button>
+          </Link>
+    
+          {tokenPayload.isAdmin ? (
+            <>
+              <Link to={`/classes/${classId}/update`}>
+                <Button>Edit Class</Button>
+              </Link>
+    
+              <DeleteClass
+                classId={classId}
+                onDelete={() => setTimeout(() => navigate("/classes"), 1000)}
+              />
+            </>
+          ) : (
+            <Booking
+              classId={classId}
+              onBookingSuccess={() => console.log("Booking successful")}
+            />
+          )}
+        </div>
       </div>
     );
   };

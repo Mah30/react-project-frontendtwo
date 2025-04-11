@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Card } from "flowbite-react";
 import {SessionContext} from '../../SessionContext/SessionContext';
 /* import { Button } from "flowbite-react"; */
+import Space from '../../components/Space';
 
 
 
@@ -68,7 +69,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-100 to-blue-200 p-4">
-      <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 flex flex-col justify-between h-[430px] bg-white/90 backdrop-blur shadow-xl border-white rounded-xl">
+      <Card className="w-full max-w-sm md:max-w-md lg:max-w-lg p-8 flex flex-col justify-between h-[480px] bg-white/90 backdrop-blur shadow-xl border-white rounded-xl">
         
         <form onSubmit={handleLoginSubmit} className="p-4">
           <h3 className="text-center font-bold mb-4">Log In</h3>
@@ -103,11 +104,14 @@ const LoginPage = () => {
           <button className="w-full bg-green-600 text-white rounded py-2 font-bold hover:bg-green-700 transition mt-4" type="submit">
             Log In
           </button>
+          
+          <Space />
 
              {/* Botão de voltar */}
           <Link to="/" className="block text-center text-sm text-blue-600 hover:underline mt-2">
             ⬅ Back to Home
           </Link>
+          
         </form>
 
         {/* Mensagem de erro exibida se houver um erro */}

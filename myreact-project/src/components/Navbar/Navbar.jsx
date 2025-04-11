@@ -54,6 +54,15 @@ import { Link } from 'react-router-dom';
            FitnessStudio
           </Typography>
 
+          <Typography 
+          variant="h7" 
+          component="div" 
+          sx={{ flexGrow: 1 }}>
+
+            <Link to={"/About"}>About</Link>
+           
+          </Typography>
+
           {isAuthenticated ? (
           <>
           <Button color="inherit" onClick={() => navigate("myclasses")}>My Classes</Button>
@@ -63,6 +72,7 @@ import { Link } from 'react-router-dom';
           </>
           ) : (
           <>
+
           <Button 
           color="inherit" 
           component={Link} 
@@ -70,6 +80,7 @@ import { Link } from 'react-router-dom';
           >
             Login
           </Button>
+          
           <Button 
           color="inherit"
           component={Link} 
