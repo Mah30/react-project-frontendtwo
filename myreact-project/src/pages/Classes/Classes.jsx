@@ -28,7 +28,6 @@ const imagesMap = {
   "Jump": Jump,
   "Pilates": Pilates,
   "Rhythmic Gymnastics": RhythmicGymnastics,
-
 }
 
 
@@ -40,11 +39,6 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   
 
    const { tokenPayload } = useContext(SessionContext); //p verificar se é admin
-   {tokenPayload?.isAdmin && (
-    <CreateClass onCreate={fetchClasses} />
-   )}
-
-   
 
 
   // Função para buscar as classes do backend
@@ -86,7 +80,6 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
     : classes;
 
 
-
   return (
       <div>
         <Space />
@@ -94,64 +87,68 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
           Your Perfect Class is Here!
         </h1>
 
-
         {selectedClass ? (
-  <ClassDetails classData={selectedClass} onBack={() => setSelectedClass(null)} />
-) : (
-  
-  <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {classesToDisplay.map((classData) => (
+          <ClassDetails 
+            classData={selectedClass} 
+            onBack={() => setSelectedClass(null)} 
+            />
+        ) : (
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {classesToDisplay.map((classData) => {
+              // Verificação no console (opcional, botei após o bug da imagem)
+            if (classData.name === "Rhythmic Gymnastics") {
+              console.log("MATCH!", classData.name);
+            }
+
+            return(
       
-      <div
-        key={classData._id}
-        className="bg-white  rounded-lg shadow-md overflow-hidden"
-        >
+              <div
+                key={classData._id}
+                className="bg-white  rounded-lg shadow-md overflow-hidden"
+                >
 
+                {/* Imagem da Classe */} 
+                {classData.name === "Rhythmic Gymnastics" ? (
+                  <img
+                  src={RhythmicGymnastics}
+                  alt="Rhythmic Gymnastics"
+                  className="w-full h-52 object-cover"
+                />
+                ) : (
+                  <img
+                    src={imagesMap[classData.name.trim()] || DefaultImage}
+                    alt={classData.name}
+                    className="w-full h-52 object-cover"
+                  />
+                )}
+                  
+                {/* Conteúdo do Card */}
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {classData.name}</h3>
+                  <p className="text-gray-600 text-sm mt-2">
+                    {classData.description || "No description available"}
+                  </p>
 
-          if (classData.name === Rhythmic Gymnastics) {
-    console.log("MATCH!", classData.name)}
-          
-        
-        {/* Imagem da Classe */}
-       
-          <img
-            src={imagesMap[classData.name.trim()] || DefaultImage}
-            alt={classData.name}
-            className="w-full h-52 object-cover"
-          />
-       
-       
-
-        {/* Conteúdo do Card */}
-        <div className="p-4">
-          <h3 className="text-lg font-semibold text-gray-900">
-            {classData.name}</h3>
-          <p className="text-gray-600 text-sm mt-2">
-            {classData.description || "No description available"}
-          </p>
-
-          {/* Botão de Visualização */}
-          <div className="flex justify-end mt-4">
-            <Link to={`/classes/${classData._id}`}>
-              <Button color="blue">View Details</Button>
-            </Link>
-          </div>
-        </div>
-        </div>
-    ))}
+                  {/* Botão de Visualização */}
+                  <div className="flex justify-end mt-4">
+                    <Link to={`/classes/${classData._id}`}>
+                      <Button color="blue">View Details</Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              );
+          } )}
   </section>
 )}
 
-<CreateClass onCreate={fetchClasses} />
-
-        
-
-        
-  
-        
-      </div>
-    );
-  };
+      {/* Renderiza CreateClass apenas para admin */}
+      {tokenPayload?.isAdmin && (
+        <CreateClass onCreate={fetchClasses} />)}
+    </div>
+  ); // do 1 return
+}; // da const Class
   
  
 export default Classes;
