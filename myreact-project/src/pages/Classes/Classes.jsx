@@ -19,6 +19,7 @@ import DefaultImage from "../../assets/images/DefaultImage.jpg";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 
+
 const imagesMap = {
   "Advanced Yoga": AdvancedYoga,
   "Basic Yoga": BasicYoga,
@@ -100,20 +101,25 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
   
   <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
     {classesToDisplay.map((classData) => (
+      
       <div
         key={classData._id}
         className="bg-white  rounded-lg shadow-md overflow-hidden"
         >
+
+
+          if (classData.name === Rhythmic Gymnastics) {
+    console.log("MATCH!", classData.name)}
           
-        {/* "max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden border border-gray-200" */}
         
         {/* Imagem da Classe */}
        
           <img
-            src={imagesMap[classData.name] || DefaultImage}
+            src={imagesMap[classData.name.trim()] || DefaultImage}
             alt={classData.name}
             className="w-full h-52 object-cover"
           />
+       
        
 
         {/* Conteúdo do Card */}
