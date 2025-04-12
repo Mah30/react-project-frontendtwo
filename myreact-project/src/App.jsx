@@ -29,7 +29,7 @@ import Classes from './pages/Classes/Classes';
 import MyClasses from './pages/MyClasses/MyClasses';
 import UpdateClass from './pages/ClassesDetails/UpdateClass';
 import AdminRoute from './components/AdminRoute';
-import AboutPage from './pages/Aboutpage';
+import AboutPage from '../src/pages/AboutPage';
 
 
 
