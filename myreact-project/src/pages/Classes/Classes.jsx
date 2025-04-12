@@ -97,7 +97,7 @@ const Classes = ({ isHomepage, isUserSpace, ClassDetails }) => {
             {classesToDisplay.map((classData) => {
               // Verificação no console (opcional, botei após o bug da imagem)
             if (classData.name === "Rhythmic Gymnastics") {
-              console.log("MATCH!", classData.name);
+              console.log("IMG PATH!", RhythmicGymnastics);
             }
 
             return(
