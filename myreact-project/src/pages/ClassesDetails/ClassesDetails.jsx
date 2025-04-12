@@ -22,6 +22,11 @@ const ClassesDetails = () => {
 
   
     useEffect(() => {
+      if (!token) {
+        console.warn("No token found. Skipping fetch.");
+        return;
+      }
+
       const fetchClassDetails = async () => {
         try {
           const response = await fetch(`${API_URL}/api/classes/${classId}`,
@@ -32,7 +37,6 @@ const ClassesDetails = () => {
             }
           );
        
-
           if (response.ok) {
             const data = await response.json();
             setClassData(data); 
@@ -49,7 +53,7 @@ const ClassesDetails = () => {
       };
   
       fetchClassDetails();
-    }, [classId]);
+    }, [classId, token]);
   
     if (loading) return <p>Loading class details...</p>;
     if (error) return <p>Error: {error}</p>;
