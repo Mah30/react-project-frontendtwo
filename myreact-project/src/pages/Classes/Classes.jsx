@@ -10,7 +10,7 @@ import CrossFit from "../../assets/images/CrossFit.jpg";
 import Fitnessdance from "../../assets/images/Fitnessdance.jpg";
 import Jump from "../../assets/images/Jump.jpg";
 import Pilates from "../../assets/images/Pilates.jpg";
-import RhythmicGymnastics from "../../assets/images/RhythmicGymnastics.jpg";
+import RhythmicGymnastics from "../../../public/RhythmicGymnastics.jpg";
 import Space from '../../components/Space';
 import DefaultImage from "../../assets/images/DefaultImage.jpg";
 
